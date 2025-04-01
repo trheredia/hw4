@@ -9,15 +9,15 @@ using namespace std;
 // You may add any prototypes of helper functions here
 bool pathHelper(Node* node, int depth, int& leaf){
   
-  if(node == nullptr){ // base case
+  if(node == nullptr){ // base case if the node is empty
     return true;
   }
 
-  if(node->left == nullptr && node->right == nullptr){ // leaf node
+  if(node->left == nullptr && node->right == nullptr){ // if its a leaf node
     if(leaf == -1){ // remember the depth if it's the first leaf
       leaf = depth;
     }
-    if(depth == leaf){ // compare current leaf and first leaf 
+    if(depth == leaf){ // compare the depths  
       return true;
     } 
     else{
@@ -42,27 +42,8 @@ bool pathHelper(Node* node, int depth, int& leaf){
 bool equalPaths(Node * root)
 {
     // Add your code below
-    if(root == nullptr){ // base case
-      return true;
-    }
-
-    Node* currentNode = root; 
-    int depth = 1;
-
-    if(currentNode->left){
-      depth++;
-      currentNode = currentNode->left;
-      equalPaths(currentNode);
-    }
-
-    if(currentNode->right){
-      depth++;
-      currentNode = currentNode->right;
-      equalPaths(currentNode);
-    }
-
     int leaf = -1; // no leaf yet
-    return pathHelper(root, 0, leaf);
+    return pathHelper(root, 0, leaf); // recurse starting at depth 0
 
 }
 
